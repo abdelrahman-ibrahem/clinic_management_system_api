@@ -3,6 +3,7 @@ from rest_framework import generics, permissions
 from rest_framework.response import Response
 from .serializers import AppointmentSerializer, ClinicSerializer, ReviewSerializer
 from .models import Appointment, Clinic, Review
+from django_filters.rest_framework import DjangoFilterBackend
 
 class ListCreateClinics(generics.ListCreateAPIView):
     queryset = Clinic.objects.all()
@@ -16,6 +17,8 @@ class RetrevieDeleteAppointment(generics.RetrieveDestroyAPIView):
 class ViewAllAppointments(generics.ListAPIView):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user', 'date', 'status']
 
 class CreateAppointment(generics.CreateAPIView):
     queryset = Appointment.objects.all()

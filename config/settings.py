@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'drf_yasg',
+    'django_filters',
     # local apps 
     'users',
     'clinic',
@@ -65,7 +66,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    # SETUP FILTER IN DRF
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+
 }
 # ADD CUSTOM REGISTER AND UPDATE PROFILE 
 REST_AUTH  = {   
