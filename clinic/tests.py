@@ -37,4 +37,11 @@ class ClinicTesting(TestCase):
     
     # TEST REVIEW MODEL
     def test_review_model(self):
-        pass
+        review = Review.objects.create(owner= self.user, rate=5, 
+                                        content="good clinic", clinic=self.clinic)
+        
+        self.assertEqual(review.owner, self.user)
+        self.assertEqual(review.clinic, self.clinic)
+        self.assertEqual(review.rate, 5)
+        self.assertEqual(review.content, "good clinic")
+        
