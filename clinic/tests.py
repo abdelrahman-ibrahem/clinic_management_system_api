@@ -8,24 +8,32 @@ User = get_user_model()
 
 class ClinicTesting(TestCase):
     def setUp(self):
-        self.user = User.objects.create(username="abdelrahman", email="abdelrahman@gmail.com",
+        self.docter = User.objects.create(username="abdelrahman", email="abdelrahman@gmail.com",
                                         password="password", role="docter")
         
-        clinic = Clinic.objects.create(name="clinic1", price=120, docter=self.user,
+        self.user = User.objects.create(username="abdo", email="abdo@gmail.com",
+                                        password="password", role="user")
+        
+        self.clinic = Clinic.objects.create(name="clinic1", price=120, docter=self.docter,
                                        descrption="this is clinic1")
     
     # TEST CLINIC MODEL
     def test_clinic_model(self):
-        clinic = Clinic.objects.create(name="clinic1", price=120, docter=self.user,
+        clinic = Clinic.objects.create(name="clinic1", price=120, docter=self.docter,
                                        descrption="this is clinic1")
         self.assertEqual(clinic.name, "clinic1")
         self.assertEqual(clinic.price, 120)
-        self.assertEqual(clinic.docter, self.user)
+        self.assertEqual(clinic.docter, self.docter)
         self.assertEqual(clinic.descrption, "this is clinic1")
     
     # TEST APPOINTMENT MODEL
     def test_appointment_model(self):
-        pass
+        appointment = Appointment.objects.create(user=self.user, clinic=self.clinic,
+                                                    date=datetime(2023, 2, 24) , time=datetime.now().strftime('%H:%M:%S'))
+        self.assertEqual(appointment.user, self.user)
+        self.assertEqual(appointment.clinic, self.clinic)
+        self.assertEqual(appointment.date, datetime(2023, 2, 24))
+        self.assertEqual(appointment.time, datetime.now().strftime('%H:%M:%S'))
     
     # TEST REVIEW MODEL
     def test_review_model(self):
