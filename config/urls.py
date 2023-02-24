@@ -22,14 +22,5 @@ urlpatterns = [
    path('users/', include('users.urls')),
    path('clinic/', include('clinic.urls')),
    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-
 ]
 
-'''
-custom permissions 
-paths 
-swagger 
-custom register
-views 
-social logins
-'''
