@@ -50,3 +50,14 @@ class Appointment(models.Model):
     def __str__(self):
         return str(self.clinic.name)
 
+
+# CREATE MODEL FOR RESCHEDULE  APPOINTMENT 
+
+class AppointmentReschedule(models.Model):
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+    status = models.CharField(choices=APPOINTMENTS_STATUS, max_length=120, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return str(self.appointment.user.username)
