@@ -18,10 +18,16 @@ class CustomClinicAdminView(admin.ModelAdmin):
         ImagesInlineView
     ]
 
-
+class CustomReviewAdminView(admin.ModelAdmin):
+    list_display = [
+        'owner',
+        'rate',
+        'content',
+        'clinic'
+    ]
 
 admin.site.register(Clinic, CustomClinicAdminView)
 admin.site.register(ClinicImage)
 admin.site.register(Appointment)
-admin.site.register(Review)
+admin.site.register(Review, CustomReviewAdminView)
 admin.site.register(AppointmentReschedule)
