@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-c^i8bx2i8q%v=i@(bu&k9wwq89t68@wg5ah8z*2a#(2hr1i6)p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://clinicmanagementsystemapi-production.up.railway.app', 'localhost']
+ALLOWED_HOSTS = ['https://clinicmanagementsystemapi-production.up.railway.app', 'localhost', '0.0.0.0']
 
 
 # Application definition
